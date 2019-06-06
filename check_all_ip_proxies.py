@@ -42,7 +42,7 @@ class check_ip_proxy(object):
         live_ips = list(set(old_ips_proxies + live_ips))
         with open("/home/www/htdocs/ips_proxies.txt","w+") as f:
             for i in live_ips:
-                f.write(ip)
+                f.write(i)
                 f.write("\n")
         f.close()
 check_ip_proxy().run()

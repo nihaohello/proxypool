@@ -10,10 +10,10 @@ class Tutu_Ip_Proxy(object):
     def __init__(self):
         self.ua=UserAgent()
     def run(self):
-        self.xicidaili()
-        self.kuaidaili()
+        # self.xicidaili()
+        # self.kuaidaili()
         self.iphai()
-        self.yundaili()
+        # self.yundaili()
         self.check_ip()
     def check_ip(self):
         f = open("/home/www/htdocs/check_ips.txt")
@@ -21,7 +21,7 @@ class Tutu_Ip_Proxy(object):
         for i in f.readlines():
             old_ips.append(i.rstrip("\n"))
         f.close()
-        live_ips=[]
+        live_ips = []
         for ip in old_ips:
             try:
                 s = requests.get('http://www.baidu.com/', proxies={"https": "https://" + str(ip)}, timeout=2)
@@ -47,9 +47,10 @@ class Tutu_Ip_Proxy(object):
         f.close()
         # 老的代理ips+新检测出来的代理ips
         live_ips = list(set(old_ips_proxies + live_ips))
+        # print(live_ips)
         with open("/home/www/htdocs/ips_proxies.txt", "w+") as f:
             for i in live_ips:
-                f.write(ip)
+                f.write(i)
                 f.write("\n")
         f.close()
     def get_ip66__proxy_ips(self):
@@ -181,5 +182,6 @@ class Tutu_Ip_Proxy(object):
         f.close()
 
 Tutu_Ip_Proxy().run()
+
 
 
