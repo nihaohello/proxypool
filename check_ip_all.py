@@ -6,12 +6,12 @@ class check_ip_proxy(object):
     def __init__(self):
         pass
     def run(self):
-        f = open("/home/www/htdocs/all_ips.txt")
+        f = open("/home/www/htdocs/ips_proxies.txt")
         old_ips = []
         for i in f.readlines():
             old_ips.append(i.lstrip("http://").lstrip("https://").rstrip("\n"))
         f.close()
-        f = open("/home/www/htdocs/ips_proxies.txt")
+        f = open("/home/www/htdocs/all_ips.txt")
         for i in f.readlines():
             i = i.rstrip("\n")
             if i not in old_ips:
@@ -40,6 +40,12 @@ class check_ip_proxy(object):
             except Exception as e:
                 pass
     # def file_save(self,ip):
+        old_ips_proxies=[]
+        f=open("/home/www/htdocs/ips_proxies.txt")
+        for i in f.readlines():
+            old_ips_proxies.append(i.lstrip("http://").lstrip("https://").rstrip("\n"))
+        f.close()
+        live_ips=list(set(old_ips_proxies+live_ips))
         with open("/home/www/htdocs/ips_proxies.txt","w+") as f:
             for i in live_ips:
                 f.write(ip)
